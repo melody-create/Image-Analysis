@@ -1,4 +1,5 @@
 # Adapted from Complex Heatmap https://jokergoo.github.io/ComplexHeatmap-reference/book/introduction.html
+# Adapted from https://doi.org/10.1073/pnas.2402557122 Figure 2 B-C
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
