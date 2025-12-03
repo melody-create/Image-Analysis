@@ -40,7 +40,7 @@ pca_df$Genotype <- df$Genotype
 ggplot(pca_df, aes(x = PC1, y = PC2, color = Genotype, label = Name)) +
   geom_point(size = 1.5) +
   #geom_text(vjust = 0, size = 0) +
-  scale_color_manual(values = c(WT = "royalblue", HET = "palegreen3", MUT = "mediumvioletred")) +
+  scale_color_manual(values = c(WT = "blue", HET = "green", MUT = "red")) +
   theme_minimal(base_size = 14) +
   labs(
     title = "PCA of First 100 Frames z score",
