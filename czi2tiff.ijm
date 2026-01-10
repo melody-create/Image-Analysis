@@ -32,7 +32,7 @@ for (i = 0; i < list.length; i++) {
                 chNum = d2s(ch, 0);
                 if (ch < 10) chNum = "0" + chNum;
                 savePath = dir + baseName + "_" + chNum + ".tif";
-                print(" Saving → " + savePath);
+                print(" Saving " + savePath);
                 saveAs("Tiff", savePath);
                 close();
                 ch++;
