@@ -1,38 +1,50 @@
 // Batch Fiji Macro: process all .czi files in a folder
 // Splits channels and saves each as TIF in the same folder
 
-dir = getDirectory("D:/ZF_Images_2025/Chd7 ERK 2025/06272025_ERK/");
+dir = getDirectory("D:/ZF_Images/");
 list = getFileList(dir);
 
 for (i = 0; i < list.length; i++) {
     if (endsWith(list[i], ".czi")) {
         inputFile = dir + list[i];
-        name = File.getNameWithoutExtension(inputFile);
+        name = File.getNameWithoutExtension(list[i]);
+
+        // Remove suffix like "_DualSideFusion"
+        if (indexOf(name, "_Dual") != -1)
+            baseName = substring(name, 0, indexOf(name, "_Dual"));
+        else
+            baseName = name;
         print("Processing: " + inputFile);
 
-        // Open with BioFormats (silent)
-        run("Bio-Formats Importer", "open=[" + inputFile + "] autoscale color_mode=Default view=Hyperstack stack_order=XYCZT");
-
+        // Open with Bio-Formats
+        run("Bio-Formats Importer",
+            "open=[" + inputFile + "] autoscale color_mode=Default view=Hyperstack stack_order=XYCZT");
         // Split channels
         run("Split Channels");
+        // Get list of open images
+        titles = getList("image.titles");
 
-        // Save each channel as TIF
-        n = nImages();
-        for (c = 1; c <= n; c++) {
-            selectImage(1);
-            savePath = dir + name + "_ch" + (c-1) + ".tif";
-            print("   Saving channel " + (c-1) + " → " + savePath);
-            saveAs("Tiff", savePath);
-            close();
+        ch = 1;
+        for (t = 0; t < titles.length; t++) {
+            // Only process channel images
+            if (startsWith(titles[t], "C")) {
+                selectWindow(titles[t]);
+                chNum = d2s(ch, 0);
+                if (ch < 10) chNum = "0" + chNum;
+                savePath = dir + baseName + "_" + chNum + ".tif";
+                print(" Saving → " + savePath);
+                saveAs("Tiff", savePath);
+                close();
+                ch++;
+            }
         }
 
-        // Close any leftover windows
-        while (nImages > 0) {
-            selectImage(nImages);
+        // Close anything still open
+        while (nImages() > 0) {
+            selectImage(nImages());
             close();
         }
-
-        print("Finished: " + name);
+        print("Finished: " + baseName);
     }
 }
 
