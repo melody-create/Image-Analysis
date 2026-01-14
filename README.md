@@ -4,3 +4,4 @@ Step 2: Registration nrrd using computing cluster (bash) then coversion to 8 bit
 Step 3: Mapmap creation using matlab
 Step 4: Region quantification using python
 Step 5: Visualization using R
+All of this has been adapted from Ownen Randlett and Summer Thyme's methods and a collaboration between Marsden Lab members Melody Hancock, Dana Hodorovicch-Ruby, and Sureni Sumathipala.
