@@ -1,7 +1,7 @@
 // Batch Fiji Macro: process all .czi files in a folder
 // Splits channels and saves each as TIF in the same folder
 
-dir = getDirectory("D:/ZF_Images/");
+dir = getDirectory("Choose folder with CZI files");
 list = getFileList(dir);
 
 for (i = 0; i < list.length; i++) {
