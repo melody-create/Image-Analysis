@@ -12,12 +12,9 @@ for (i = 0; i < list.length; i++) {
 
         open(inputPath);
 
-        n = nSlices;
-        for (s = 1; s <= n; s++) {
-            setSlice(s);
-            run("Flip Horizontally");
-            run("Flip Vertically");
-        }
+        // 180° rotation = flip X + flip Y (no dialogs in batch mode)
+        run("Flip Horizontally");
+        run("Flip Vertically");
 
         run("Nrrd ... ", "nrrd=" + outputPath);
         close();
