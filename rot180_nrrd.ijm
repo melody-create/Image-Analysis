@@ -1,29 +1,30 @@
 inputDir = getDirectory("Choose folder with .nrrd files");
 outputDir = getDirectory("Choose folder for rotated NRRDs");
 
-angle = 180;
+setBatchMode(true);
 
 list = getFileList(inputDir);
 for (i = 0; i < list.length; i++) {
     if (endsWith(list[i], ".nrrd")) {
-        // Define full input and output paths
+
         inputPath = inputDir + list[i];
         outputPath = outputDir + list[i];
 
-        // Open NRRD
         open(inputPath);
 
-        // Rotate 180°
-        run("Rotate...", "angle=" + angle + " grid=1 interpolation=Bilinear");
+        n = nSlices;
+        for (s = 1; s <= n; s++) {
+            setSlice(s);
+            run("Flip Horizontally");
+            run("Flip Vertically");
+        }
 
-        // Save rotated NRRD
         run("Nrrd ... ", "nrrd=" + outputPath);
-
-        // Close image
         close();
 
         print("Rotated and saved: " + outputPath);
     }
 }
 
+setBatchMode(false);
 print("All NRRDs rotated 180°");
