@@ -16,7 +16,7 @@ import tifffile
 import dill
 
 # ===============================================================
-# USER SETTINGS
+# USER PATHS TO UPDATE
 # ===============================================================
 
 # Input image directory (where your .tif brain stacks are)
