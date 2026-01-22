@@ -7,8 +7,6 @@ MAP-Mapping Region Quantification Script
 This script loads 3D MAP-mapping activity images and anatomical region masks,
 computes region-wise activation (fraction of active voxels per region) for
 each color channel, and outputs CSV tables summarizing results.
-
-Run: python mapmapping_quantify.py
 """
 
 import os
