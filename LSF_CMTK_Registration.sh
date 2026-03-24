@@ -13,13 +13,13 @@ set -euo pipefail
 
 # ---- Modules ----
 module load perl
-module load /usr/local/usrapps/chd7rnaseq/modulefiles/cmtk/3.3.2
+module load /modulefiles/cmtk/3.3.2
 
 # ---- Paths ----
-ROOT_DIR=/rsstu/users/k/kcmarsde/CYFIP2_Startle_Project/Sureni_Sumathipala/MAP_mapping/ImagesForKimsPaper
-REF_IMG=/rsstu/users/k/kcmarsde/CYFIP2_Startle_Project/Melody_Hancock/map_mapping/Registration/reference/Ref20131120pt14pl2.nrrd
+ROOT_DIR=/
+REF_IMG=/
 OUT_DIR=$ROOT_DIR/Registered
-CMTK_BIN=/usr/local/usrapps/chd7rnaseq/mbhancoc/CMTK-3.3.2/usr/local/lib/cmtk/bin
+CMTK_BIN=/
 
 mkdir -p "$OUT_DIR"
 cd "$ROOT_DIR"
